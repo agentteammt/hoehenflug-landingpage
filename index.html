@@ -45,10 +45,10 @@ a{color:#A90122;text-decoration:none}a:hover{color:#C4142E}
 @keyframes hf-seg{from{width:22%}to{width:78%}}
 @keyframes hf-corner{0%,100%{opacity:1;filter:drop-shadow(0 0 10px rgba(169,1,34,.6))}50%{opacity:.15;filter:drop-shadow(0 0 2px rgba(169,1,34,.3))}}
 @keyframes hf-dots{0%,80%,100%{opacity:.25}40%{opacity:1}}
-@media (max-width:980px){body{--hero-cols:1fr;--proof-cols:repeat(2,minmax(0,1fr));--team-cols:1fr;--kt-cols:1fr;--chk-cols:1fr;--ph-tile-w:38%}}
+@media (max-width:980px){body{--spl-m-disp:block;--spl-w:0;--hero-cols:1fr;--proof-cols:repeat(2,minmax(0,1fr));--team-cols:1fr;--kt-cols:1fr;--chk-cols:1fr;--ph-tile-w:38%}}
 @media (max-width:1080px){body{--nav-disp:none}}
 @media (max-width:767px){body{--ph-media-pos:relative;--ph-ar:16 / 9;--ph-pos:right center;--ph-tile-pos:relative;--ph-tile-left:auto;--ph-tile-top:auto;--ph-tile-w:auto;--ph-tile-y:0px;--ph-tile-pad:22px 20px 24px;--ph-tile-mx:18px;--ph-labels:none;--ph-title-fs:clamp(36px,10vw,48px)}}
-@media (max-width:640px){body{--hd-h:60px;--logo-a:18px;--logo-b:22px;--hd-gap:10px;--pill-pad:8px 13px;--pill-fs:12.5px;--sec-pad:72px 0;--sec-pad-neg:-72px;--sec-pad-b:72px;--sheet-pad:64px 0 72px;--h1:clamp(46px,13.5vw,58px);--proof-cols:1fr;--num:46px;--form-cols:1fr;--hero-pad:calc(var(--hd-h) + 26px) 20px 40px;--hero-align:start;--intro-pos:70% 50%;--hero-pos:50% 100%;--ph-track:520vh;--hint-disp:none}}
+@media (max-width:640px){body{--hd-h:60px;--logo-a:18px;--logo-b:22px;--hd-gap:10px;--pill-pad:8px 13px;--pill-fs:12.5px;--sec-pad:72px 0;--sec-pad-neg:-72px;--sec-pad-b:72px;--sheet-pad:64px 0 72px;--h1:clamp(46px,13.5vw,58px);--proof-cols:1fr;--num:46px;--form-cols:1fr;--hero-pad:calc(var(--hd-h) + 26px) 20px 28px;--hero-align:start;--hero-btn-mt:auto;--hero-btn-pt:24px;--hero-txt-h:100%;--hero-btn-dir:column;--intro-pos:70% 50%;--hero-pos:50% 100%;--ph-track:520vh;--hint-disp:none}}
 @media (prefers-reduced-motion:reduce){*,::before,::after{transition:none !important;animation:none !important}}
 </style>
 </helmet>
@@ -56,7 +56,7 @@ a{color:#A90122;text-decoration:none}a:hover{color:#C4142E}
 
 <sc-if value="{{ introVisible }}" hint-placeholder-val="{{ false }}">
   <div onClick="{{ skipIntro }}" style="position: fixed; inset: 0; z-index: 100; background: #FFFFFF; opacity: {{ introOpacity }}; pointer-events: {{ introPointer }}; transition: opacity .9s cubic-bezier(.2,.8,.2,1); cursor: pointer;">
-    <video ref="{{ introRef }}" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" preload="auto" poster="img/poster-intro.webp" width="1920" height="824" style="width: 100%; height: 100%; object-fit: cover; object-position: var(--intro-pos, 50% 50%);">
+    <video ref="{{ introRef }}" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" preload="auto" poster="img/poster-intro.webp" width="1920" height="824" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--intro-pos, 50% 50%); transform: translateZ(0);">
       <source src="video/intro.mp4" type="video/mp4">
       <source src="video/intro.webm" type="video/webm">
     </video>
@@ -90,7 +90,7 @@ a{color:#A90122;text-decoration:none}a:hover{color:#C4142E}
     </picture>
   </div>
   <div style="position: relative; z-index: 1; height: 100%; max-width: 1320px; margin: 0 auto; padding: var(--hero-pad, calc(var(--hd-h, 72px) + 24px) 40px 40px); display: grid; grid-template-columns: var(--hero-cols, 1.05fr 0.95fr); align-items: var(--hero-align, center);">
-    <div ref="{{ heroTextRef }}" style="max-width: 560px; display: flex; flex-direction: column; align-items: flex-start; will-change: transform;">
+    <div ref="{{ heroTextRef }}" style="max-width: 560px; height: var(--hero-txt-h, auto); display: flex; flex-direction: column; align-items: flex-start; will-change: transform;">
       <p style="display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; color: #A90122; line-height: 1.2; opacity: {{ hOp }}; transform: {{ hTy }}; transition: opacity .44s cubic-bezier(.2,.8,.2,1) .56s, transform .44s cubic-bezier(.2,.8,.2,1) .56s;"><span aria-hidden="true" style="display: block; width: 26px; height: 1px; background: linear-gradient(90deg, transparent, #A90122);"></span>IT-Unternehmertag 2026 · Beyond Marketing</p>
       <div style="margin-top: 20px; display: flex; align-items: center; gap: .04em;">
         <div style="clip-path: {{ h1Clip }}; transition: clip-path .5s steps(9, end); margin-bottom: -.18em;">
@@ -99,7 +99,7 @@ a{color:#A90122;text-decoration:none}a:hover{color:#C4142E}
         <span aria-hidden="true" style="display: block; width: .07em; height: .82em; background: #A90122; font-size: var(--h1, clamp(56px, 6.6vw, 104px)); opacity: {{ caretOp }}; animation: {{ caretAnim }};"></span>
       </div>
       <p style="margin-top: 24px; font-size: clamp(18px, 2vw, 22px); line-height: 1.45; color: #173043; text-wrap: pretty; opacity: {{ hOp }}; transform: {{ hTy }}; transition: opacity .44s cubic-bezier(.2,.8,.2,1) .3s, transform .44s cubic-bezier(.2,.8,.2,1) .3s;">Wie KI-gestütztes Marketing Unternehmen sichtbar macht — und warum der Anlauf alles entscheidet.</p>
-      <div style="margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; width: 100%; opacity: {{ hOp }}; transform: {{ hTy }}; transition: opacity .44s cubic-bezier(.2,.8,.2,1) .42s, transform .44s cubic-bezier(.2,.8,.2,1) .42s;">
+      <div style="margin-top: var(--hero-btn-mt, 34px); padding-top: var(--hero-btn-pt, 0px); display: flex; flex-direction: var(--hero-btn-dir, row); flex-wrap: wrap; gap: 12px; width: 100%; opacity: {{ hOp }}; transform: {{ hTy }}; transition: opacity .44s cubic-bezier(.2,.8,.2,1) .42s, transform .44s cubic-bezier(.2,.8,.2,1) .42s;">
         <a href="#checks" onClick="{{ goPrimary }}" data-lift style="flex: 1 1 auto; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 26px; border-radius: 999px; background: #A90122; color: #FFFFFF; font-size: 16px; font-weight: 800; text-align: center; box-shadow: 0 10px 26px rgba(169,1,34,.10); transition: transform .25s cubic-bezier(.2,.8,.2,1), background .25s, box-shadow .3s;" style-hover="background: #C4142E; color: #FFFFFF; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(169,1,34,.14);">Sichtbarkeits-Check starten <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="transform: var(--lift-arrow, none); transition: transform .28s cubic-bezier(.2,.8,.2,1);"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
         <a href="#phasen" onClick="{{ goPhasen }}" style="flex: 1 1 auto; display: inline-flex; align-items: center; justify-content: center; padding: 14px 26px; border-radius: 999px; background: rgba(255,255,255,.32); backdrop-filter: blur(8px); color: #103955; border: 1px solid rgba(16,57,85,.18); font-size: 16px; font-weight: 800; text-align: center; transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .3s, border-color .25s;" style-hover="color: #103955; transform: translateY(-2px); box-shadow: 0 14px 36px rgba(16,57,85,.10); border-color: rgba(16,57,85,.34);">Die vier Phasen</a>
       </div>
@@ -329,7 +329,7 @@ a{color:#A90122;text-decoration:none}a:hover{color:#C4142E}
 
 <section id="team" data-screen-label="Martina und Team" style="position: relative; overflow: hidden; background: #FFFFFF; padding: var(--sec-pad, 100px 0); scroll-margin-top: var(--hd-h, 72px);">
   <span aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(rgba(16,57,85,.13) 1px, transparent 1px); background-size: 34px 34px; mask-image: radial-gradient(ellipse 60% 75% at 32% 55%, #000 15%, transparent 72%); -webkit-mask-image: radial-gradient(ellipse 60% 75% at 32% 55%, #000 15%, transparent 72%); pointer-events: none;"></span>
-  <img src="img/glassplitter-1200.webp" srcSet="img/glassplitter-1200.webp 1200w, img/glassplitter-1800.webp 1800w" sizes="60vw" width="2400" height="1792" loading="lazy" decoding="async" alt="" aria-hidden="true" style="position: absolute; left: -4%; top: 50%; width: 62%; max-width: 900px; height: auto; transform: translateY(-50%); opacity: .8; animation: hf-drift 18s ease-in-out infinite; pointer-events: none;">
+  <img src="img/glassplitter-1200.webp" srcSet="img/glassplitter-1200.webp 1200w, img/glassplitter-1800.webp 1800w" sizes="60vw" width="2400" height="1792" loading="lazy" decoding="async" alt="" aria-hidden="true" style="position: absolute; left: var(--spl-left, -4%); top: var(--spl-top, 50%); width: var(--spl-w, 62%); max-width: 900px; height: auto; transform: translateY(-50%); opacity: .8; animation: hf-drift 18s ease-in-out infinite; pointer-events: none;">
   <div data-scancut aria-hidden="true" style="position: relative; height: clamp(56px, 8vh, 98px); margin: calc(var(--sec-pad-neg, -100px) + 0px) 0 40px; overflow: hidden; pointer-events: none;">
     <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(1180px, 86%); height: 1px; background: linear-gradient(90deg, transparent, rgba(169,1,34,.45), transparent);"></span>
     <span style="position: absolute; top: 50%; left: calc(7% - 4px); width: 9px; height: 9px; transform: translateY(-50%); border-left: 1px solid #A90122; border-top: 1px solid #A90122; opacity: .6;"></span>
@@ -337,7 +337,7 @@ a{color:#A90122;text-decoration:none}a:hover{color:#C4142E}
     <span data-sweep style="position: absolute; top: 50%; left: -180px; transform: translateY(-50%); width: 160px; height: 2px; opacity: 0; background: linear-gradient(90deg, transparent, #A90122, transparent); box-shadow: 0 0 20px rgba(169,1,34,.55);"></span>
   </div>
   <div style="position: relative; z-index: 1; max-width: 1224px; margin: 0 auto; padding: 0 22px; display: grid; grid-template-columns: var(--team-cols, 1fr 0.8fr); gap: 44px 68px; align-items: center;">
-    <div data-reveal="0" style="display: flex; justify-content: center; perspective: 1200px;">
+    <div data-reveal="0" style="position: relative; display: flex; justify-content: center; perspective: 1200px;"><img src="img/glassplitter-1200.webp" width="2400" height="1792" loading="lazy" decoding="async" alt="" aria-hidden="true" style="display: var(--spl-m-disp, none); position: absolute; left: 50%; top: 50%; width: 130%; max-width: none; height: auto; transform: translate(-50%, -50%); opacity: .8; animation: hf-drift 18s ease-in-out infinite; pointer-events: none;">
       <div data-swap style="position: relative; width: min(100%, 520px); transform-origin: 50% 50%; animation: hf-yaw 6s ease-in-out infinite; cursor: pointer;">
         <img src="img/martina-alpha-789.webp" width="789" height="1138" loading="lazy" decoding="async" alt="Martina Manich, CEO team::mt GmbH — Porträt in der Glaskachel" style="width: 100%; height: auto; opacity: calc(1 - var(--swap, 0)); transition: opacity .55s cubic-bezier(.2,.8,.2,1);">
         <img src="img/team-alpha-900.webp" srcSet="img/team-alpha-900.webp 900w, img/team-alpha-1400.webp 1400w" sizes="(max-width: 980px) 88vw, 520px" width="3584" height="4800" loading="lazy" decoding="async" alt="Das Team von team::mt — neun Porträts in der Glaskachel" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: var(--swap, 0); transition: opacity .55s cubic-bezier(.2,.8,.2,1);">
@@ -521,9 +521,8 @@ class Component extends DCLogic {
     try {
       if (new URLSearchParams(location.search).has('intro')) return 'playing';
       const c = navigator.connection;
-      const slow = c && (c.saveData || /(^|\D)[23]g$/.test(c.effectiveType || ''));
-      const seen = +localStorage.getItem('hf-intro-seen') || 0;
-      if (this.reduced || slow || Date.now() - seen < 12 * 3600e3) return 'done';
+      const slow = !!(c && c.saveData);
+      if (this.reduced || slow) return 'done';
     } catch (e) {}
     return 'playing';
   }
@@ -535,7 +534,7 @@ class Component extends DCLogic {
   componentDidMount() {
     if (this.state.intro === 'playing') {
       document.documentElement.style.overflow = 'hidden';
-      this.introTimer = setTimeout(() => { const v = this.introEl; if (!v || (v.readyState < 3 && v.currentTime < .05)) this.endIntro(false); }, 3000);
+      this.introTimer = setTimeout(() => { const v = this.introEl; if (!v || (!this.introStarted && v.currentTime < .05)) this.endIntro(false); }, 4500);
     }
     window.addEventListener('scroll', this.onScroll, { passive: true });
     window.addEventListener('resize', this.onResize);
@@ -584,21 +583,31 @@ class Component extends DCLogic {
   /* Intro → Hero */
   introRef = el => {
     if (!el || this.introEl === el) return;
-    this.introEl = el; el.muted = true;
+    this.introEl = el; el.muted = true; el.defaultMuted = true; el.playsInline = true;
+    el.setAttribute('muted', ''); el.setAttribute('playsinline', ''); el.setAttribute('webkit-playsinline', '');
     el.addEventListener('ended', () => this.endIntro(true));
     el.addEventListener('error', () => this.endIntro(false));
-    el.play().catch(() => {});
+    el.addEventListener('playing', () => { this.introStarted = true; clearTimeout(this.introTimer); }, { once: true });
+    const tryPlay = () => { const p = el.play(); if (p && p.catch) p.catch(() => {}); };
+    tryPlay();
+    el.addEventListener('loadedmetadata', tryPlay, { once: true });
+    el.addEventListener('canplay', tryPlay, { once: true });
+    const onTouch = () => { if (!this.introStarted) { tryPlay(); this.ignoreSkipUntil = Date.now() + 600; } };
+    window.addEventListener('touchstart', onTouch, { once: true, passive: true });
   };
   endIntro(fade) {
     if (this.state.intro !== 'playing') return;
     clearTimeout(this.introTimer);
-    try { localStorage.setItem('hf-intro-seen', String(Date.now())); } catch (e) {}
     document.documentElement.style.overflow = '';
     if (fade && !this.reduced) { this.setState({ intro: 'fading', introOp: 0 }); setTimeout(() => this.setState({ intro: 'done' }), 950); }
     else this.setState({ intro: 'done' });
     this.startHero();
   }
-  skipIntro = e => { e && e.stopPropagation(); this.endIntro(true); };
+  skipIntro = e => {
+    e && e.stopPropagation();
+    if (e && e.currentTarget && e.currentTarget.tagName !== 'BUTTON' && Date.now() < (this.ignoreSkipUntil || 0)) return;
+    this.endIntro(true);
+  };
   startHero() {
     if (this.reduced) return this.setState({ heroIn: true });
     setTimeout(() => this.setState({ heroIn: true, caret: true }), 260);
